@@ -1,6 +1,7 @@
 package com.epam.ski_cards;
 
 import com.epam.ski_cards.enums.CardType;
+import java.util.Calendar;
 
 /**
  *
@@ -8,8 +9,8 @@ import com.epam.ski_cards.enums.CardType;
  */
 public class DaysCard extends SkiCard {
 
-    public DaysCard(int id, CardType ct) {
-        super(id, ct);
+    public DaysCard(int id, CardType ct, Calendar regDate) {
+        super(id, ct, regDate);
     }
-    
+
 }
