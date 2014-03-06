@@ -10,10 +10,11 @@ public abstract class SkiCard {
 
     public final int id;
     private boolean working = true;
-    private CardType ct;
+    public final CardType ct;
 
-    public SkiCard(int id) {
+    public SkiCard(int id, CardType ct) {
         this.id = id;
+        this.ct = ct;
     }
 
     public boolean isWorking() {

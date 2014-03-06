@@ -1,5 +1,6 @@
 package com.epam.ski_cards;
 
+import com.epam.ski_cards.enums.CardType;
 import com.epam.ski_cards.enums.LiftCounts;
 
 /**
@@ -8,13 +9,24 @@ import com.epam.ski_cards.enums.LiftCounts;
  */
 public class LiftsCard extends SkiCard {
 
-    int trips;
-    LiftCounts lc;
+    private int trips;
+    public final LiftCounts lc;
 
-    public LiftsCard(int id, int trips, LiftCounts lc) {
-        super(id);
+    public LiftsCard(int id, CardType ct, int trips, LiftCounts lc) {
+        super(id, ct);
         this.lc = lc;
     }
-    
+
+    public int getTrips() {
+        return trips;
+    }
+
+    public LiftCounts getLc() {
+        return lc;
+    }
+
+    public void setTrips(int trips) {
+        this.trips = trips;
+    }
 
 }
