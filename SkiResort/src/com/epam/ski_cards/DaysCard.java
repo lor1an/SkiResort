@@ -1,6 +1,7 @@
 package com.epam.ski_cards;
 
 import com.epam.ski_cards.enums.CardType;
+import com.epam.ski_cards.enums.DayCounts;
 import java.util.Calendar;
 
 /**
@@ -9,8 +10,11 @@ import java.util.Calendar;
  */
 public class DaysCard extends SkiCard {
 
-    public DaysCard(int id, CardType ct, Calendar regDate) {
-        super(id, ct, regDate);
+    public final DayCounts DC;
+
+    public DaysCard(int id, CardType ct, Calendar regDate, Boolean weekend, DayCounts dc) {
+        super(id, ct, regDate, weekend);
+        DC = dc;
     }
 
 }

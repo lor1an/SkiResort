@@ -8,7 +8,7 @@ public enum LiftCounts {
 
     TEN(10), TWENTY(20), FIFTY(50), HUNDRED(100);
 
-    int lcounts;
+    final int lcounts;
 
     LiftCounts(int lcounts) {
         this.lcounts = lcounts;
@@ -18,7 +18,4 @@ public enum LiftCounts {
         return lcounts;
     }
 
-    public void setLCounts(int lcounts) {
-        this.lcounts = lcounts;
-    }
 }

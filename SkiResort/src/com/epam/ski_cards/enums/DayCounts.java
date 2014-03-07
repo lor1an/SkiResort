@@ -8,7 +8,7 @@ public enum DayCounts {
 
     FIRST_HALF, SECOND_HALF, ONE(1), TWO(2), FIVE(5);
 
-    int days;
+    final int days;
 
     DayCounts(){
         this(0);
@@ -18,4 +18,10 @@ public enum DayCounts {
         this.days = days;
 
     }
+
+    public int getDays() {
+        return days;
+    }
+    
+    
 }

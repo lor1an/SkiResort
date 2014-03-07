@@ -13,8 +13,8 @@ public class LiftsCard extends SkiCard {
     private int trips;
     public final LiftCounts lc;
 
-    public LiftsCard(int id, CardType ct, Calendar regDate, int trips, LiftCounts lc) {
-        super(id, ct, regDate);
+    public LiftsCard(int id, CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) {
+        super(id, ct, regDate, weekend);
         this.lc = lc;
     }
 

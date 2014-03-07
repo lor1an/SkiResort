@@ -12,7 +12,7 @@ public class SeasonCard extends SkiCard {
     public final Calendar END_OF_THE_SEASON;
 
     public SeasonCard(int id, CardType ct, Calendar regDate, Calendar c) {
-        super(id, ct, regDate);
+        super(id, ct, regDate, null);
         END_OF_THE_SEASON = c;
     }
 
