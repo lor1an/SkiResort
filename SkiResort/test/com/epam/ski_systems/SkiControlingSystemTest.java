@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.epam.ski_systems;
 
 import com.epam.ski_cards.SkiCard;
@@ -24,22 +23,22 @@ import static org.junit.Assert.*;
  * @author Anatolii_Hlazkov
  */
 public class SkiControlingSystemTest {
-    
+
     public SkiControlingSystemTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -144,8 +143,8 @@ public class SkiControlingSystemTest {
         System.out.println("getLog");
         SkiControlingSystem instance = new SkiControlingSystem();
         ArrayList expResult = null;
-        ArrayList result = instance.getLog();
-        assertEquals(expResult, result);
+//        ArrayList result = instance.getLog();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -197,5 +196,5 @@ public class SkiControlingSystemTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

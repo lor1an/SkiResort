@@ -8,7 +8,6 @@ import com.epam.ski_cards.SkiCard;
 import com.epam.ski_cards.enums.CardType;
 import com.epam.ski_cards.enums.DayCounts;
 import com.epam.ski_cards.enums.LiftCounts;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -18,7 +17,7 @@ import java.util.Calendar;
 public class SkiControlingSystem {
 
     private static SkiControlingSystem instance;
-    public final ArrayList<String> log = new ArrayList();
+    public final MyArrayList<String> log = new MyArrayList();
     private static int id;
     public boolean weekend;
 
@@ -66,36 +65,37 @@ public class SkiControlingSystem {
         }
     }
 
-    public ArrayList getLog() {
+    public MyArrayList getLog() {
         return log;
     }
 
     public void printWholeLog() {
-        for (String s : log) {
-            System.out.println(s);
+        for (int i = 0; i < log.size(); i++) {
+            System.out.println(log.get(i));
         }
     }
 
     public void printDaysCardLog() {
-        for (String s : log) {
-            if (s.startsWith("DAY")) {
-                System.out.println(s);
+        for (int i = 0; i < log.size(); i++) {
+            if (log.get(i).startsWith("DAYS")) {
+                System.out.println(log.get(i));
             }
         }
+
     }
 
     public void printLiftsCardLog() {
-        for (String s : log) {
-            if (s.startsWith("LIFT")) {
-                System.out.println(s);
+        for (int i = 0; i < log.size(); i++) {
+            if (log.get(i).startsWith("LIFTS")) {
+                System.out.println(log.get(i));
             }
         }
     }
 
     public void printSeasonCardLog() {
-        for (String s : log) {
-            if (s.startsWith("SEASON")) {
-                System.out.println(s);
+        for (int i = 0; i < log.size(); i++) {
+            if (log.get(i).startsWith("SEASON")) {
+                System.out.println(log.get(i));
             }
         }
     }

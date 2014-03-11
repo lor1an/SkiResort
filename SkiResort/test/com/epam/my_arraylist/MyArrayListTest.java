@@ -1,9 +1,5 @@
 package com.epam.my_arraylist;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -52,14 +48,19 @@ public class MyArrayListTest {
 
     @Test
     public void testGet() {
-        System.out.println("get");
-        int index = 0;
+        int index = 5;
         MyArrayList instance = new MyArrayList();
-        Object expResult = null;
+        Object expResult = new Object();
+        for (int i = 0; i < 10; i++) {
+            if (i == index) {
+                instance.add(expResult);
+            } else {
+                instance.add(new Object());
+            }
+        }
         Object result = instance.get(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     @Test
@@ -69,7 +70,6 @@ public class MyArrayListTest {
         for (int i = 0; i < size; i++) {
             instance.add(new Object());
         }
-        System.out.println("SIZE" + instance.size());
         int expResult = size - 1;
         instance.remove(size);
         int result = instance.size();
@@ -78,22 +78,29 @@ public class MyArrayListTest {
 
     @Test
     public void testRemoveAll() {
-        System.out.println("removeAll");
+        int size = 15;
+        int expResult = 0;
         MyArrayList instance = new MyArrayList();
+        for (int i = 0; i < size; i++) {
+            instance.add(new Object());
+        }
         instance.removeAll();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int result = instance.size();
+        assertEquals(expResult, result);
+
     }
 
     @Test
     public void testSet() {
-        System.out.println("set");
-        int index = 0;
-        Object element = null;
+        int index = 5;
         MyArrayList instance = new MyArrayList();
-        instance.set(index, element);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Object expResult = new Object();
+        for (int i = 0; i < 10; i++) {
+            instance.add(new Object());
+        }
+        instance.set(index, expResult);
+        Object result = instance.get(index);
+        assertEquals(expResult, result);
     }
 
     @Test
@@ -122,20 +129,69 @@ public class MyArrayListTest {
 
     @Test
     public void testToString() {
-        System.out.println("toString");
         MyArrayList instance = new MyArrayList();
         String expResult = "[]";
         String result = instance.toString();
-        System.out.println(result);
         assertEquals(expResult, result);
     }
 
     @Test
     public void testIsEmpty() {
-        System.out.println("isEmpty");
         MyArrayList instance = new MyArrayList();
         boolean expResult = true;
         boolean result = instance.isEmpty();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testEqualsReflection() {
+        MyArrayList instance = new MyArrayList();
+        for (int i = 0; i < 10; i++) {
+            instance.add(new Object());
+        }
+        boolean expResult = true;
+        boolean result = instance.equals(instance);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testEqualsSymmetry() {
+        MyArrayList instance1 = new MyArrayList();
+        MyArrayList instance2 = new MyArrayList();
+        for (int i = 0; i < 10; i++) {
+            Object obj = new Object();
+            instance1.add(obj);
+            instance2.add(obj);
+        }
+        boolean expResult = true;
+        boolean result = instance1.equals(instance2) == instance2.equals(instance1);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testEqualsTransitivity() {
+        MyArrayList inst1 = new MyArrayList();
+        MyArrayList inst2 = new MyArrayList();
+        MyArrayList inst3 = new MyArrayList();
+        for (int i = 0; i < 10; i++) {
+            Object obj = new Object();
+            inst1.add(obj);
+            inst2.add(obj);
+            inst3.add(obj);
+        }
+        boolean expResult = true;
+
+        boolean result;
+        result = inst1.equals(inst2) && inst2.equals(inst3)
+                ? inst1.equals(inst3) : false;
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testEqualsNull() {
+        MyArrayList instance = new MyArrayList();
+        boolean expResult = false;
+        boolean result = instance.equals(null);
         assertEquals(expResult, result);
     }
 

@@ -66,9 +66,19 @@ public class Runner {
         System.out.println(c3.compareTo(c4));
         ArrayList a = new ArrayList();
         Object o = a.toArray();
-        if(o==null){
+        if (o == null) {
             System.out.println("null");
         }
+        System.out.println(new Object().equals(new Object()));
 
+        ArrayList a1 = new ArrayList();
+        ArrayList a2 = new ArrayList();
+        for (int m = 0; m < 10; m++) {
+            a1.add(m);
+            a2.add(m);
+        }
+        a2.set(0, 9);
+        a2.set(9, 0);
+        System.out.println("ArrayEquals");
     }
 }

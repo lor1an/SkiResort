@@ -17,20 +17,23 @@ public class Turnstile {
 
     private SkiControlingSystem sks;
 
-    public void passingTurnstile(SkiCard sc) {
+    public boolean passingTurnstile(SkiCard sc) {
         if (!sc.CARD_TYPE.equals(SEASON)) {
             if (sc.WEEKEND != sks.weekend) {
                 String str = sks.weekend ? "weekend" : "workaday";
                 System.out.println("You shall not pass.");
                 sks.writeData(sc.CARD_TYPE.toString() + " card, id = " + sc.id
                         + ".\nCard has not pass. Reason: it is not " + str + ".");
-                return;
+                return false;
             }
         }
         if (check(sc)) {
             System.out.println("You may pass.");
             sks.writeData(sc.CARD_TYPE.toString() + " card, id = " + sc.id
                     + ".\nCard has pass.");
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -78,7 +81,7 @@ public class Turnstile {
             if (minutes > 0) {
                 hours++;
             }
-            //Опредеоение условия по которому нужно проверять карточку
+            //Определение условия по которому нужно проверять карточку
             boolean flag;
             if (dc.DC.equals(FIRST_HALF)) {
                 flag = hours >= 9 && hours <= 13;

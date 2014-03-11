@@ -100,11 +100,6 @@ public class MyArrayList<E> {
         return (E[]) Arrays.copyOfRange(elementData, 0, size);
     }
 
-    @Override
-    public String toString() {
-        return Arrays.toString(Arrays.copyOfRange(elementData, 0, size));
-    }
-
     private boolean checkForNull(E[] e) {
         if (e == null) {
             System.err.println("You can`t add null as array to the list.");
@@ -125,5 +120,41 @@ public class MyArrayList<E> {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(Arrays.copyOfRange(elementData, 0, size));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof MyArrayList)) {
+            return false;
+        }
+        MyArrayList that = (MyArrayList) o;
+
+        if (!(this.size() == that.size())) {
+            return false;
+        } else {
+            int length = this.size();
+            for (int i = 0; i < length; i++) {
+                if (!this.get(i).equals(that.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }
