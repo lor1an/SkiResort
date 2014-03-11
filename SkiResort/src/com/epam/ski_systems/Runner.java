@@ -14,7 +14,7 @@ import java.util.Random;
  * @author Anatolii_Hlazkov
  */
 public class Runner {
-    
+
     public static void main(String[] args) {
         int id = 1;
         String str = CardType.DAY.toString() + " card, id = " + id
@@ -28,31 +28,31 @@ public class Runner {
         int j = 0;
         LinkedList l = new LinkedList();
         Random rand = new Random();
-        
+
         Calendar c1 = new GregorianCalendar();
         System.out.println(c1.getTime());
         System.out.println(c.getTime().toString().
                 startsWith(new GregorianCalendar().
                         getTime().toString().substring(0, 10)));
-        
+
         System.out.println(new GregorianCalendar().
                 getTime().toString().substring(0, 10));
-        
+
         System.out.println(c.getTime().toString().
                 endsWith(new GregorianCalendar().
                         getTime().toString().substring(24)));
-        
+
         System.out.println(new GregorianCalendar().
                 getTime().toString().substring(11, 19));
         String time = new GregorianCalendar().
                 getTime().toString().substring(11, 19);
         Integer hours = new Integer(time.substring(0, 2));
         Integer minutes = new Integer(time.substring(3, 5));
-        
+
         if (minutes > 0) {
             hours++;
         }
-        
+
         System.out.println(hours + " " + minutes);
         Calendar c2 = new GregorianCalendar();
         Calendar c3 = (Calendar) c2.clone();
@@ -65,7 +65,10 @@ public class Runner {
         c4.add(Calendar.DAY_OF_WEEK, 5);
         System.out.println(c3.compareTo(c4));
         ArrayList a = new ArrayList();
-        a.addAll(null);
-        
+        Object o = a.toArray();
+        if(o==null){
+            System.out.println("null");
+        }
+
     }
 }

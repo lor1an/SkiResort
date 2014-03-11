@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.epam.my_arraylist;
 
 import org.junit.After;
@@ -22,13 +17,21 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void testAdd_GenericType() {
-        System.out.println("add");
+    public void testAddNull() {
         Object e = null;
         MyArrayList instance = new MyArrayList();
         instance.add(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testAddNullToSpecificIndex() {
+        Object e = null;
+        int index = 10;
+        MyArrayList instance = new MyArrayList();
+        for (int i = 0; i < 15; i++) {
+            instance.add(new Object());
+        }
+        instance.add(index, e);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -48,33 +51,6 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void testAddAll_GenericType() {
-        System.out.println("addAll");
-        Object[] e = null;
-        MyArrayList instance = new MyArrayList();
-        instance.addAll(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addAll method, of class MyArrayList.
-     */
-    @Test
-    public void testAddAll_int_GenericType() {
-        System.out.println("addAll");
-        int index = 0;
-        Object[] e = null;
-        MyArrayList instance = new MyArrayList();
-        instance.addAll(index, e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of get method, of class MyArrayList.
-     */
-    @Test
     public void testGet() {
         System.out.println("get");
         int index = 0;
@@ -86,24 +62,20 @@ public class MyArrayListTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of remove method, of class MyArrayList.
-     */
     @Test
     public void testRemove() {
-        System.out.println("remove");
-        int index = 0;
+        int size = 5;
         MyArrayList instance = new MyArrayList();
-        Object expResult = null;
-        Object result = instance.remove(index);
+        for (int i = 0; i < size; i++) {
+            instance.add(new Object());
+        }
+        System.out.println("SIZE" + instance.size());
+        int expResult = size - 1;
+        instance.remove(size);
+        int result = instance.size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of removeAll method, of class MyArrayList.
-     */
     @Test
     public void testRemoveAll() {
         System.out.println("removeAll");
@@ -113,9 +85,6 @@ public class MyArrayListTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of set method, of class MyArrayList.
-     */
     @Test
     public void testSet() {
         System.out.println("set");
@@ -127,9 +96,6 @@ public class MyArrayListTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of size method, of class MyArrayList.
-     */
     @Test
     public void testSizeAfterAdding() {
         int size = 100;
@@ -155,42 +121,22 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void testToArray() {
-        System.out.println("toArray");
-        MyArrayList instance = new MyArrayList();
-        Object[] expResult = null;
-        Object[] result = instance.toArray();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of toString method, of class MyArrayList.
-     */
-    @Test
     public void testToString() {
         System.out.println("toString");
         MyArrayList instance = new MyArrayList();
-        String expResult = "";
+        String expResult = "[]";
         String result = instance.toString();
+        System.out.println(result);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of isEmpty method, of class MyArrayList.
-     */
     @Test
     public void testIsEmpty() {
         System.out.println("isEmpty");
         MyArrayList instance = new MyArrayList();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }
