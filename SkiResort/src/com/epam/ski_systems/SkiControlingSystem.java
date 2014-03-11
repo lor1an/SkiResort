@@ -6,12 +6,10 @@ import com.epam.ski_cards.LiftsCard;
 import com.epam.ski_cards.SeasonCard;
 import com.epam.ski_cards.SkiCard;
 import com.epam.ski_cards.enums.CardType;
-import static com.epam.ski_cards.enums.CardType.DAYS;
-import static com.epam.ski_cards.enums.CardType.LIFTS;
 import com.epam.ski_cards.enums.DayCounts;
 import com.epam.ski_cards.enums.LiftCounts;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  *
@@ -20,7 +18,7 @@ import java.util.GregorianCalendar;
 public class SkiControlingSystem {
 
     private static SkiControlingSystem instance;
-    private final MyArrayList list = new MyArrayList();
+    private final ArrayList list = new ArrayList();
     private static int id;
 
     public static SkiControlingSystem getInstance() {
@@ -31,14 +29,14 @@ public class SkiControlingSystem {
     }
 
     public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, DayCounts dc) {
-        if (!ct.equals(CardType.DAYS)) {
+        if (!ct.equals(CardType.DAY)) {
             throw new NullPointerException();
         }
         return new DaysCard(id++, ct, regDate, weekend, dc);
     }
 
     public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) {
-        if (!ct.equals(CardType.LIFTS)) {
+        if (!ct.equals(CardType.LIFT)) {
             throw new NullPointerException();
         }
         return new LiftsCard(id++, ct, regDate, weekend, lc);
@@ -50,9 +48,21 @@ public class SkiControlingSystem {
         }
         return new SeasonCard(id++, ct, regDate, endOfSeason);
     }
-    
-    public void writeData(String message){
-        
+
+    public void writeData(String message) {
+        list.add(message);
+    }
+
+    public void blockCard(SkiCard sk) {
+        if (!sk.isWorking()) {
+            sk.set(false);
+            System.out.println("Card was blocked.");
+            writeData(sk.CARD_TYPE.toString() + " card, id = " + sk.id
+                    + ".\nWas blocked.");
+        } else {
+            System.out.println("Card already blocking.");
+
+        }
     }
 
 }

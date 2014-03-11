@@ -6,5 +6,5 @@ package com.epam.ski_cards.enums;
  */
 public enum CardType {
 
-    DAYS, LIFTS, SEASON;
+    DAY, LIFT, SEASON;
 }

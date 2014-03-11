@@ -4,6 +4,7 @@ import com.epam.ski_cards.DaysCard;
 import com.epam.ski_cards.LiftsCard;
 import com.epam.ski_cards.SeasonCard;
 import com.epam.ski_cards.SkiCard;
+import java.util.Calendar;
 
 /**
  *
@@ -13,27 +14,28 @@ public class Turnstile {
 
     private SkiControlingSystem sks;
 
-    public void check(SkiCard sc) {
+    public boolean check(SkiCard sc) {
         switch (sc.CARD_TYPE) {
-            case DAYS:
+            case DAY:
                 DaysCard dc = (DaysCard) sc;
-                check(dc);
-                break;
-            case LIFTS:
+                return check(dc);
+            case LIFT:
                 LiftsCard lc = (LiftsCard) sc;
-                check(lc);
-                break;
+                return check(lc);
             case SEASON:
                 SeasonCard sec = (SeasonCard) sc;
-                check(sec);
-                break;
+                return check(sec);
+            default:
+                return false;
         }
 
     }
 
-    private void check(DaysCard dc) {
+    private boolean check(DaysCard dc) {
         switch (dc.DC) {
             case FIRST_HALF:
+                if(dc.REG_DATE.DAY_OF_WEEK==1);
+                
                 break;
             case SECOND_HALF:
                 break;
@@ -44,21 +46,27 @@ public class Turnstile {
             case FIVE:
                 break;
         }
+        return false;
 
     }
 
-    private void check(LiftsCard lc) {
+    private boolean check(LiftsCard lc) {
         if (lc.lc.getCounts() < lc.getTrips() + 1) {
-            System.out.println("------------You shall not pass------------");
-            sks.writeData("Lifts card has not pass. Reason: over trips");
+            System.out.println("You shall not pass.");
+            sks.writeData(lc.CARD_TYPE.toString() + " card, id = " + lc.id
+                    + ".\nCard has not pass. Reason: over trips.");
+            return false;
         } else if (!lc.isWorking()) {
-            System.out.println("-------------Your card was blocked--------");
-            sks.writeData("Lifts card has not pass. Reason: blocked");
+            System.out.println("Your card was blocked.");
+            sks.writeData(lc.CARD_TYPE.toString() + " card, id = " + lc.id
+                    + ".\nCard has not pass. Reason: blocked.");
+            return false;
         }
+        return true;
 
     }
 
-    private void check(SeasonCard sc) {
-
+    private boolean check(SeasonCard sc) {
+        return false;
     }
 }
