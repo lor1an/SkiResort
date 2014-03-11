@@ -2,25 +2,25 @@ package com.epam.my_arraylist;
 
 import java.util.Arrays;
 
-public class MyArrayList {
+public class MyArrayList<E> {
 
     private int size;
-    private Integer[] elementData;
+    private Object[] elementData;
 
     public MyArrayList(int initialCapacity) {
-        this.elementData = new Integer[initialCapacity];
+        this.elementData = new Object[initialCapacity];
     }
 
     public MyArrayList() {
         this(10);
     }
 
-    public void add(Integer e) {
+    public void add(E e) {
         ensureCapacity(size + 1);
         elementData[size++] = e;
     }
 
-    public void add(int index, Integer e) {
+    public void add(int index, E e) {
         if (index == 0) {
             add(e);
             return;
@@ -38,18 +38,17 @@ public class MyArrayList {
         size++;
     }
 
-    public void addAll(Integer[] e) {
+    public void addAll(E[] e) {
         if (checkForNull(e)) {
             return;
         }
         ensureCapacity(size + e.length);
-        for (int i = 0; i < e.length; i++) {
-            elementData[size++] = e[i];
+        for (E e1 : e) {
+            elementData[size++] = e1;
         }
-
     }
 
-    public void addAll(int index, Integer[] e) {
+    public void addAll(int index, E[] e) {
         if (checkForNull(e)) {
             return;
         }
@@ -75,29 +74,26 @@ public class MyArrayList {
     }
 
     private void ensureCapacity(int minCapacity) {
-
         if (minCapacity > elementData.length) {
             elementData = Arrays.copyOf(elementData, minCapacity);
         }
     }
 
-    public Integer get(int index) {
+    public E get(int index) {
         if (isEmpty() || checkIndex(index)) {
             return null;
         }
-        return elementData[index];
-
+        return (E) elementData[index];
     }
 
-    public Integer remove(int index) {
+    public E remove(int index) {
         if (isEmpty() || checkIndex(index)) {
             return null;
         }
-        Integer removingElement = elementData[index];
+        E removingElement = (E) elementData[index];
         for (int i = index; i < elementData.length - 1; i++) {
             elementData[i] = elementData[i + 1];
         }
-
         elementData = Arrays.copyOfRange(elementData, 0, elementData.length - 1);
         --size;
         return removingElement;
@@ -105,12 +101,14 @@ public class MyArrayList {
     }
 
     public void removeAll() {
-        elementData = new Integer[size];
+        for (int i = 0; i < elementData.length; i++) {
+            elementData[i] = null;
+        }
+        elementData = new Object[size];
         size = 0;
-
     }
 
-    public void set(int index, Integer element) {
+    public void set(int index, E element) {
         if (isEmpty() || checkIndex(index)) {
             return;
         }
@@ -121,8 +119,8 @@ public class MyArrayList {
         return size;
     }
 
-    public Integer[] toArray() {
-        return Arrays.copyOfRange(elementData, 0, size);
+    public E[] toArray() {
+        return (E[]) Arrays.copyOfRange(elementData, 0, size);
     }
 
     @Override
@@ -130,7 +128,7 @@ public class MyArrayList {
         return Arrays.toString(Arrays.copyOfRange(elementData, 0, size));
     }
 
-    private boolean checkForNull(Integer[] e) {
+    private boolean checkForNull(E[] e) {
         if (e == null) {
             System.err.println("You can`t add null as array to the list.");
             return true;

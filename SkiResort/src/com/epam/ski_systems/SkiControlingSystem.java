@@ -18,8 +18,9 @@ import java.util.Calendar;
 public class SkiControlingSystem {
 
     private static SkiControlingSystem instance;
-    private final ArrayList list = new ArrayList();
+    public final ArrayList<String> log = new ArrayList();
     private static int id;
+    public boolean weekend;
 
     public static SkiControlingSystem getInstance() {
         if (instance == null) {
@@ -50,7 +51,7 @@ public class SkiControlingSystem {
     }
 
     public void writeData(String message) {
-        list.add(message);
+        log.add(message);
     }
 
     public void blockCard(SkiCard sk) {
@@ -62,6 +63,40 @@ public class SkiControlingSystem {
         } else {
             System.out.println("Card already blocking.");
 
+        }
+    }
+
+    public ArrayList getLog() {
+        return log;
+    }
+
+    public void printWholeLog() {
+        for (String s : log) {
+            System.out.println(s);
+        }
+    }
+
+    public void printDaysCardLog() {
+        for (String s : log) {
+            if (s.startsWith("DAY")) {
+                System.out.println(s);
+            }
+        }
+    }
+
+    public void printLiftsCardLog() {
+        for (String s : log) {
+            if (s.startsWith("LIFT")) {
+                System.out.println(s);
+            }
+        }
+    }
+
+    public void printSeasonCardLog() {
+        for (String s : log) {
+            if (s.startsWith("SEASON")) {
+                System.out.println(s);
+            }
         }
     }
 
