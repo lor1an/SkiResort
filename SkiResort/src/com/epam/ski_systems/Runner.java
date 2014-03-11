@@ -39,7 +39,6 @@ public class Runner {
         Calendar c1 = new GregorianCalendar();
         System.out.println(c1.getTimeInMillis());
         Date d1 = c1.getTime();
-        d1.ge
-        
+     
     }
 }
