@@ -80,6 +80,6 @@ public class Runner {
         a2.set(0, 9);
         a2.set(9, 0);
         System.out.println("ArrayEquals");
-        System.out.println("anatoliy.eyespots@gmail.com".equals("anatoliy.eyespots@gmail.com"));
+       
     }
 }
