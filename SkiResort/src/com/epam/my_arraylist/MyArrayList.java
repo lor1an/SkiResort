@@ -25,12 +25,7 @@ public class MyArrayList<E> {
             add(e);
             return;
         }
-        if (isEmpty()) {
-            return;
-        }
-        if (checkIndex(index)) {
-            return;
-        }
+        checkIndex(index);
         ensureCapacity(size + 1);
         System.arraycopy(elementData, index, elementData,
                 index + 1, size - index);
@@ -39,9 +34,6 @@ public class MyArrayList<E> {
     }
 
     public void addAll(E[] e) {
-        if (checkForNull(e)) {
-            return;
-        }
         ensureCapacity(size + e.length);
         for (E e1 : e) {
             elementData[size++] = e1;
@@ -49,20 +41,11 @@ public class MyArrayList<E> {
     }
 
     public void addAll(int index, E[] e) {
-        if (checkForNull(e)) {
-            return;
-        }
+        checkIndex(index);
         if (index == 0) {
             addAll(e);
             return;
         }
-        if (isEmpty()) {
-            return;
-        }
-        if (checkIndex(index)) {
-            return;
-        }
-
         ensureCapacity(size + e.length);
         System.arraycopy(elementData, index, elementData,
                 index + e.length, size - index);
@@ -80,16 +63,12 @@ public class MyArrayList<E> {
     }
 
     public E get(int index) {
-        if (isEmpty() || checkIndex(index)) {
-            return null;
-        }
+        checkIndex(index);
         return (E) elementData[index];
     }
 
     public E remove(int index) {
-        if (isEmpty() || checkIndex(index)) {
-            return null;
-        }
+        checkIndex(index);
         E removingElement = (E) elementData[index];
         for (int i = index; i < elementData.length - 1; i++) {
             elementData[i] = elementData[i + 1];
@@ -109,9 +88,7 @@ public class MyArrayList<E> {
     }
 
     public void set(int index, E element) {
-        if (isEmpty() || checkIndex(index)) {
-            return;
-        }
+        checkIndex(index);
         elementData[index] = element;
     }
 
@@ -139,18 +116,14 @@ public class MyArrayList<E> {
     private boolean checkIndex(int i) {
         if (i > size || i < 0) {
             System.out.println("Index out of bounds.");
-            return true;
+            throw new IndexOutOfBoundsException("Index out of bounds."
+                    + " Index = " + i + ".");
         } else {
             return false;
         }
     }
 
     public boolean isEmpty() {
-        if (size == 0) {
-            System.out.println("List is empty.");
-            return true;
-        } else {
-            return false;
-        }
+        return size == 0;
     }
 }
