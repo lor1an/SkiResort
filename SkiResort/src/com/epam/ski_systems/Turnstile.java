@@ -37,7 +37,7 @@ public class Turnstile {
         }
     }
 
-    public boolean check(SkiCard sc) {
+    boolean check(SkiCard sc) {
         if (!sc.isWorking()) {
             System.out.println("Your card was blocked.");
             sks.writeData(sc.CARD_TYPE.toString() + " card, id = " + sc.id
@@ -75,7 +75,7 @@ public class Turnstile {
         String regDateInString = dc.REG_DATE.getTime().toString();
         if (regDateInString.startsWith(currentDateInString.substring(0, 10))
                 && regDateInString.endsWith(currentDateInString.substring(24))) {
-            String time = regDateInString.substring(11, 19);
+            String time = currentDateInString.substring(11, 19);
             Integer hours = new Integer(time.substring(0, 2));
             Integer minutes = new Integer(time.substring(3, 5));
             if (minutes > 0) {
@@ -113,7 +113,7 @@ public class Turnstile {
     }
 
     private void writeOldCardDenialData(SkiCard sc) {
-        System.out.println("Old Card");
+        System.out.println("Old Card.");
         sks.writeData(sc.CARD_TYPE.toString() + " card, id = " + sc.id
                 + ".\nCard has not pass. Reason: Old card.");
     }
