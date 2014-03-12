@@ -15,7 +15,7 @@ import java.util.GregorianCalendar;
  */
 public class Turnstile {
 
-    private SkiControlingSystem sks;
+    SkiControlingSystem sks = SkiControlingSystem.getInstance();
 
     public boolean passingTurnstile(SkiCard sc) {
         if (!sc.CARD_TYPE.equals(SEASON)) {

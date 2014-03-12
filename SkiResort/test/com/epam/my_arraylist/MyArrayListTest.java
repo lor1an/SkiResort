@@ -168,24 +168,7 @@ public class MyArrayListTest {
         assertEquals(expResult, result);
     }
 
-    @Test
-    public void testEqualsTransitivity() {
-        MyArrayList inst1 = new MyArrayList();
-        MyArrayList inst2 = new MyArrayList();
-        MyArrayList inst3 = new MyArrayList();
-        for (int i = 0; i < 10; i++) {
-            Object obj = new Object();
-            inst1.add(obj);
-            inst2.add(obj);
-            inst3.add(obj);
-        }
-        boolean expResult = true;
 
-        boolean result;
-        result = inst1.equals(inst2) && inst2.equals(inst3)
-                ? inst1.equals(inst3) : false;
-        assertEquals(expResult, result);
-    }
 
     @Test
     public void testEqualsNull() {

@@ -11,4 +11,18 @@ package com.epam.exceptions;
  */
 public class WrongCardTypeException extends Exception {
 
+    private String message;
+
+    public WrongCardTypeException() {
+        message = "You send wrong card type";
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

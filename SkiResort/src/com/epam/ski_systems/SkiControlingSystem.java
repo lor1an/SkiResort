@@ -1,5 +1,6 @@
 package com.epam.ski_systems;
 
+import com.epam.exceptions.WrongCardTypeException;
 import com.epam.my_arraylist.MyArrayList;
 import com.epam.ski_cards.DaysCard;
 import com.epam.ski_cards.LiftsCard;
@@ -28,23 +29,23 @@ public class SkiControlingSystem {
         return instance;
     }
 
-    public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, DayCounts dc) {
+    public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, DayCounts dc) throws WrongCardTypeException {
         if (!ct.equals(CardType.DAY)) {
-            throw new NullPointerException();
+            throw new  WrongCardTypeException();
         }
         return new DaysCard(id++, ct, regDate, weekend, dc);
     }
 
-    public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) {
+    public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) throws WrongCardTypeException {
         if (!ct.equals(CardType.LIFT)) {
-            throw new NullPointerException();
+            throw new  WrongCardTypeException();
         }
         return new LiftsCard(id++, ct, regDate, weekend, lc);
     }
 
-    public SkiCard makeCard(CardType ct, Calendar regDate, Calendar endOfSeason) {
+    public SkiCard makeCard(CardType ct, Calendar regDate, Calendar endOfSeason) throws WrongCardTypeException {
         if (!ct.equals(CardType.SEASON)) {
-            throw new NullPointerException();
+            throw new  WrongCardTypeException();
         }
         return new SeasonCard(id++, ct, regDate, endOfSeason);
     }
