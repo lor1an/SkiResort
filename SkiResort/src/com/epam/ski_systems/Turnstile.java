@@ -128,7 +128,6 @@ public class Turnstile {
             lc.setTrips(lc.getTrips() + 1);
             return true;
         }
-
     }
 
     private boolean check(SeasonCard sc) {

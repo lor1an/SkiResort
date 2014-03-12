@@ -26,7 +26,7 @@ public abstract class SkiCard {
         return working;
     }
 
-    public void set(boolean working) {
+    public void setWorking(boolean working) {
         this.working = working;
     }
 

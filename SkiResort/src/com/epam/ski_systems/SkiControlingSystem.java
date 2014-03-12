@@ -56,7 +56,7 @@ public class SkiControlingSystem {
 
     public void blockCard(SkiCard sk) {
         if (sk.isWorking()) {
-            sk.set(false);
+            sk.setWorking(false);
             System.out.println("Card was blocked.");
             writeData(sk.CARD_TYPE.toString() + " card, id = " + sk.id
                     + ".\nWas blocked.");

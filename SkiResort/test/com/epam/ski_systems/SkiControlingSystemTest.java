@@ -5,6 +5,7 @@
  */
 package com.epam.ski_systems;
 
+import com.epam.exceptions.WrongCardTypeException;
 import com.epam.ski_cards.SkiCard;
 import com.epam.ski_cards.enums.CardType;
 import com.epam.ski_cards.enums.DayCounts;
@@ -60,7 +61,7 @@ public class SkiControlingSystemTest {
      * Test of makeCard method, of class SkiControlingSystem.
      */
     @Test
-    public void testMakeCard_4args_1() {
+    public void testMakeCard_4args_1() throws WrongCardTypeException {
         System.out.println("makeCard");
         CardType ct = null;
         Calendar regDate = null;
@@ -78,7 +79,7 @@ public class SkiControlingSystemTest {
      * Test of makeCard method, of class SkiControlingSystem.
      */
     @Test
-    public void testMakeCard_4args_2() {
+    public void testMakeCard_4args_2() throws WrongCardTypeException {
         System.out.println("makeCard");
         CardType ct = null;
         Calendar regDate = null;
@@ -96,7 +97,7 @@ public class SkiControlingSystemTest {
      * Test of makeCard method, of class SkiControlingSystem.
      */
     @Test
-    public void testMakeCard_3args() {
+    public void testMakeCard_3args() throws WrongCardTypeException {
         System.out.println("makeCard");
         CardType ct = null;
         Calendar regDate = null;
