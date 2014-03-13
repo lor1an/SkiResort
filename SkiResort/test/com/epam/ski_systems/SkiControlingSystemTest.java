@@ -6,12 +6,19 @@
 package com.epam.ski_systems;
 
 import com.epam.exceptions.WrongCardTypeException;
+import com.epam.ski_cards.DaysCard;
+import com.epam.ski_cards.LiftsCard;
 import com.epam.ski_cards.SkiCard;
 import com.epam.ski_cards.enums.CardType;
+import static com.epam.ski_cards.enums.CardType.DAY;
+import static com.epam.ski_cards.enums.CardType.LIFT;
 import com.epam.ski_cards.enums.DayCounts;
+import static com.epam.ski_cards.enums.DayCounts.FIRST_HALF;
 import com.epam.ski_cards.enums.LiftCounts;
+import static com.epam.ski_cards.enums.LiftCounts.TEN;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,174 +35,45 @@ public class SkiControlingSystemTest {
     public SkiControlingSystemTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of getInstance method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testGetInstance() {
-        System.out.println("getInstance");
-        SkiControlingSystem expResult = null;
-        SkiControlingSystem result = SkiControlingSystem.getInstance();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of makeCard method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testMakeCard_4args_1() throws WrongCardTypeException {
-        System.out.println("makeCard");
-        CardType ct = null;
-        Calendar regDate = null;
-        Boolean weekend = null;
-        DayCounts dc = null;
+    @Test(expected = WrongCardTypeException.class)
+    public void testMakeDayCardThrowExceptionWhenSendIncorrectCardType() {
+        Calendar regDate = new GregorianCalendar();
+        CardType incorrectCardType = LIFT;
+        DayCounts halfDayCounts = FIRST_HALF;
+        Boolean weekend = false;
         SkiControlingSystem instance = new SkiControlingSystem();
-        SkiCard expResult = null;
-        SkiCard result = instance.makeCard(ct, regDate, weekend, dc);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        SkiCard result = instance.makeCard(incorrectCardType, regDate, weekend, halfDayCounts);
     }
 
-    /**
-     * Test of makeCard method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testMakeCard_4args_2() throws WrongCardTypeException {
-        System.out.println("makeCard");
-        CardType ct = null;
-        Calendar regDate = null;
-        Boolean weekend = null;
-        LiftCounts lc = null;
+    @Test(expected = WrongCardTypeException.class)
+    public void testMakeLiftCardThrowExceptionWhenSendIncorrectCardType() {
+        CardType incorrectCardType = DAY;
+        Calendar regDate = new GregorianCalendar();
         SkiControlingSystem instance = new SkiControlingSystem();
-        SkiCard expResult = null;
-        SkiCard result = instance.makeCard(ct, regDate, weekend, lc);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Boolean weekend = false;
+        LiftCounts lcounts = TEN;
+        SkiCard result = instance.makeCard(incorrectCardType, regDate, weekend, lcounts);
     }
 
-    /**
-     * Test of makeCard method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testMakeCard_3args() throws WrongCardTypeException {
-        System.out.println("makeCard");
-        CardType ct = null;
-        Calendar regDate = null;
-        Calendar endOfSeason = null;
+    @Test(expected = WrongCardTypeException.class)
+    public void testMakeSeasonCardThrowExceptionWhenSendIncorrectCardType() {
+        CardType incorrectCardType = DAY;
+        Calendar regDate = new GregorianCalendar();
+        Calendar endOfSeason = new GregorianCalendar();
         SkiControlingSystem instance = new SkiControlingSystem();
-        SkiCard expResult = null;
-        SkiCard result = instance.makeCard(ct, regDate, endOfSeason);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Boolean weekend = false;
+        SkiCard result = instance.makeCard(incorrectCardType, regDate, endOfSeason);
     }
 
-    /**
-     * Test of writeData method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testWriteData() {
-        System.out.println("writeData");
-        String message = "";
-        SkiControlingSystem instance = new SkiControlingSystem();
-        instance.writeData(message);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of blockCard method, of class SkiControlingSystem.
-     */
     @Test
     public void testBlockCard() {
-        System.out.println("blockCard");
-        SkiCard sk = null;
+        SkiCard sc = new LiftsCard(0, LIFT, new GregorianCalendar(),
+                false, TEN);
         SkiControlingSystem instance = new SkiControlingSystem();
-        instance.blockCard(sk);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getLog method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testGetLog() {
-        System.out.println("getLog");
-        SkiControlingSystem instance = new SkiControlingSystem();
-        ArrayList expResult = null;
-//        ArrayList result = instance.getLog();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of printWholeLog method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testPrintWholeLog() {
-        System.out.println("printWholeLog");
-        SkiControlingSystem instance = new SkiControlingSystem();
-        instance.printWholeLog();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of printDaysCardLog method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testPrintDaysCardLog() {
-        System.out.println("printDaysCardLog");
-        SkiControlingSystem instance = new SkiControlingSystem();
-        instance.printDaysCardLog();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of printLiftsCardLog method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testPrintLiftsCardLog() {
-        System.out.println("printLiftsCardLog");
-        SkiControlingSystem instance = new SkiControlingSystem();
-        instance.printLiftsCardLog();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of printSeasonCardLog method, of class SkiControlingSystem.
-     */
-    @Test
-    public void testPrintSeasonCardLog() {
-        System.out.println("printSeasonCardLog");
-        SkiControlingSystem instance = new SkiControlingSystem();
-        instance.printSeasonCardLog();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean expResult = false;
+        instance.blockCard(sc);
+        boolean result = sc.isWorking();
+        assertEquals(expResult, result);
     }
 
 }

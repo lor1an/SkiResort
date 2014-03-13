@@ -29,23 +29,23 @@ public class SkiControlingSystem {
         return instance;
     }
 
-    public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, DayCounts dc) throws WrongCardTypeException {
+    public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, DayCounts dc) {
         if (!ct.equals(CardType.DAY)) {
-            throw new  WrongCardTypeException();
+            throw new WrongCardTypeException();
         }
         return new DaysCard(id++, ct, regDate, weekend, dc);
     }
 
-    public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) throws WrongCardTypeException {
+    public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) {
         if (!ct.equals(CardType.LIFT)) {
-            throw new  WrongCardTypeException();
+            throw new WrongCardTypeException();
         }
         return new LiftsCard(id++, ct, regDate, weekend, lc);
     }
 
-    public SkiCard makeCard(CardType ct, Calendar regDate, Calendar endOfSeason) throws WrongCardTypeException {
+    public SkiCard makeCard(CardType ct, Calendar regDate, Calendar endOfSeason) {
         if (!ct.equals(CardType.SEASON)) {
-            throw new  WrongCardTypeException();
+            throw new WrongCardTypeException();
         }
         return new SeasonCard(id++, ct, regDate, endOfSeason);
     }
@@ -54,11 +54,11 @@ public class SkiControlingSystem {
         log.add(message);
     }
 
-    public void blockCard(SkiCard sk) {
-        if (sk.isWorking()) {
-            sk.setWorking(false);
+    public void blockCard(SkiCard sc) {
+        if (sc.isWorking()) {
+            sc.setWorking(false);
             System.out.println("Card was blocked.");
-            writeData(sk.CARD_TYPE.toString() + " card, id = " + sk.id
+            writeData(sc.CARD_TYPE.toString() + " card, id = " + sc.id
                     + ".\nWas blocked.");
         } else {
             System.out.println("Card already blocking.");
