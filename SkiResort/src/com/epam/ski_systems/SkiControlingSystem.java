@@ -82,7 +82,6 @@ public class SkiControlingSystem {
                 System.out.println(log.get(i));
             }
         }
-
     }
 
     public void printLiftsCardLog() {

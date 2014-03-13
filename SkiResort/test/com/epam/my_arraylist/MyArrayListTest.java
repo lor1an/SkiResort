@@ -60,7 +60,6 @@ public class MyArrayListTest {
         }
         Object result = instance.get(index);
         assertEquals(expResult, result);
-
     }
 
     @Test
@@ -87,7 +86,6 @@ public class MyArrayListTest {
         instance.removeAll();
         int result = instance.size();
         assertEquals(expResult, result);
-
     }
 
     @Test
@@ -167,9 +165,7 @@ public class MyArrayListTest {
         boolean result = instance1.equals(instance2) == instance2.equals(instance1);
         assertEquals(expResult, result);
     }
-
-
-
+    
     @Test
     public void testEqualsNull() {
         MyArrayList instance = new MyArrayList();
@@ -177,5 +173,4 @@ public class MyArrayListTest {
         boolean result = instance.equals(null);
         assertEquals(expResult, result);
     }
-
 }

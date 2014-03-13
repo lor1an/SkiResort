@@ -16,13 +16,8 @@ import com.epam.ski_cards.enums.DayCounts;
 import static com.epam.ski_cards.enums.DayCounts.FIRST_HALF;
 import com.epam.ski_cards.enums.LiftCounts;
 import static com.epam.ski_cards.enums.LiftCounts.TEN;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

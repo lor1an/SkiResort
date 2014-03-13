@@ -16,7 +16,6 @@ public enum DayCounts {
     
     DayCounts(int days) {
         this.days = days;
-
     }
 
     public int getDays() {

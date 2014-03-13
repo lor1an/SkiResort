@@ -171,7 +171,6 @@ public class TurnstileTest {
         boolean expResult = false;
         boolean result = instance.passingTurnstile(lc);
         assertEquals(expResult, result);
-
     }
 
     @Test
@@ -183,7 +182,6 @@ public class TurnstileTest {
         instance.passingTurnstile(lc);
         int result = instance.sks.getLog().size();
         assertEquals(expResult, result);
-
     }
 
     @Test
