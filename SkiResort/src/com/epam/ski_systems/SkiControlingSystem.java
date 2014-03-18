@@ -62,7 +62,6 @@ public class SkiControlingSystem {
                     + ".\nWas blocked.");
         } else {
             System.out.println("Card already blocking.");
-
         }
     }
 
