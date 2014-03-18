@@ -76,28 +76,34 @@ public class SkiControlingSystem {
         }
     }
 
-    public void printDaysCardLog() {
+    public MyArrayList getDaysCardLog() {
+        MyArrayList daysCardLogs = new MyArrayList();
         for (int i = 0; i < log.size(); i++) {
-            if (log.get(i).startsWith("DAYS")) {
-                System.out.println(log.get(i));
+            if (log.get(i).startsWith("DAY")) {
+                daysCardLogs.add(log.get(i));
             }
         }
+        return daysCardLogs;
     }
 
-    public void printLiftsCardLog() {
+    public MyArrayList getLiftsCardLog() {
+        MyArrayList liftsCardLogs = new MyArrayList();
         for (int i = 0; i < log.size(); i++) {
-            if (log.get(i).startsWith("LIFTS")) {
-                System.out.println(log.get(i));
+            if (log.get(i).startsWith("LIFT")) {
+                liftsCardLogs.add(log.get(i));
             }
         }
+        return liftsCardLogs;
     }
 
-    public void printSeasonCardLog() {
+    public MyArrayList getSeasonCardLog() {
+        MyArrayList seasonCardLogs = new MyArrayList();
         for (int i = 0; i < log.size(); i++) {
             if (log.get(i).startsWith("SEASON")) {
-                System.out.println(log.get(i));
+                seasonCardLogs.add(log.get(i));
             }
         }
+        return seasonCardLogs;
     }
 
 }

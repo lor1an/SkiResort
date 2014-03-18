@@ -155,6 +155,12 @@ public class MyArrayList<E> {
 
     @Override
     public int hashCode() {
-        return 0;
+        int hash = 0;
+        E e;
+        for (int i = 0; i < elementData.length; i++) {
+            e = (E) elementData[i];
+            hash += 7 * hash + (e == null ? 0 : e.hashCode());
+        }
+        return hash;
     }
 }

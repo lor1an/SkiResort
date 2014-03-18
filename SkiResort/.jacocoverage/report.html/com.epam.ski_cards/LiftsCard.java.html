@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>LiftsCard.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;SkiResort&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">com.epam.ski_cards</a> &gt; <span class="el_source">LiftsCard.java</span></div><h1>LiftsCard.java</h1><pre class="source lang-java linenums">package com.epam.ski_cards;
+
+import com.epam.ski_cards.enums.CardType;
+import com.epam.ski_cards.enums.LiftCounts;
+import java.util.Calendar;
+
+/**
+ *
+ * @author Anatolii_Hlazkov
+ */
+public class LiftsCard extends SkiCard {
+
+    private int trips;
+    public final LiftCounts lc;
+
+    public LiftsCard(int id, CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) {
+<span class="fc" id="L17">        super(id, ct, regDate, weekend);</span>
+<span class="fc" id="L18">        this.lc = lc;</span>
+<span class="fc" id="L19">    }</span>
+
+    public int getTrips() {
+<span class="fc" id="L22">        return trips;</span>
+    }
+
+    public LiftCounts getLc() {
+<span class="nc" id="L26">        return lc;</span>
+    }
+
+    public void setTrips(int trips) {
+<span class="fc" id="L30">        this.trips = trips;</span>
+<span class="fc" id="L31">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.4.201312101107</span></div></body></html>

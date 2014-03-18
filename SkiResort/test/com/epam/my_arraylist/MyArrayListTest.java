@@ -165,7 +165,7 @@ public class MyArrayListTest {
         boolean result = instance1.equals(instance2) == instance2.equals(instance1);
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testEqualsNull() {
         MyArrayList instance = new MyArrayList();
@@ -173,4 +173,44 @@ public class MyArrayListTest {
         boolean result = instance.equals(null);
         assertEquals(expResult, result);
     }
+
+    @Test
+    public void testEqualsNotArrayListInstance() {
+        MyArrayList instance = new MyArrayList();
+        boolean expResult = false;
+        boolean result = instance.equals(new Object());
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testEqualsArrayListsWithDifferentSizes() {
+        MyArrayList instance1 = new MyArrayList();
+        MyArrayList instance2 = new MyArrayList();
+        int size = 10;
+        for (int i = 0; i < size; i++) {
+            instance1.add(i);
+            instance2.add(i);
+        }
+        instance2.add(size);
+        boolean expResult = false;
+        boolean result = instance1.equals(instance2);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testHashOnEqualsLists() {
+        MyArrayList instance1 = new MyArrayList();
+        MyArrayList instance2 = new MyArrayList();
+        int size = 10;
+        for (int i = 0; i < size; i++) {
+            instance1.add(i);
+            instance2.add(i);
+        }
+        int hash1 = instance1.hashCode();
+        int hash2 = instance2.hashCode();
+        boolean expResult = true;
+        boolean result = hash1 == hash2;
+        assertEquals(expResult, result);
+    }
+
 }
