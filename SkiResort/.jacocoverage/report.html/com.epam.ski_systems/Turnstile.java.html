@@ -74,29 +74,29 @@ import java.util.GregorianCalendar;
     boolean checkHalfDayCards(DaysCard dc) {
 <span class="fc" id="L75">        String currentDate = sks.getCurrentDateInString();</span>
 <span class="fc" id="L76">        String regDateInString = dc.REG_DATE.getTime().toString();</span>
-<span class="pc bpc" id="L77" title="3 of 4 branches missed.">        if (regDateInString.startsWith(currentDate.substring(0, 10))</span>
+<span class="pc bpc" id="L77" title="1 of 4 branches missed.">        if (regDateInString.startsWith(currentDate.substring(0, 10))</span>
                 &amp;&amp; regDateInString.endsWith(currentDate.substring(24))) {
-<span class="nc" id="L79">            String time = currentDate.substring(11, 19);</span>
-<span class="nc" id="L80">            Integer hours = new Integer(time.substring(0, 2));</span>
-<span class="nc" id="L81">            info += hours;</span>
-<span class="nc" id="L82">            Integer minutes = new Integer(time.substring(3, 5));</span>
-<span class="nc" id="L83">            info += &quot; &quot; + minutes;</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (minutes &gt; 0) {</span>
+<span class="fc" id="L79">            String time = currentDate.substring(11, 19);</span>
+<span class="fc" id="L80">            Integer hours = new Integer(time.substring(0, 2));</span>
+<span class="fc" id="L81">            info += hours;</span>
+<span class="fc" id="L82">            Integer minutes = new Integer(time.substring(3, 5));</span>
+<span class="fc" id="L83">            info += &quot; &quot; + minutes;</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">            if (minutes &gt; 0) {</span>
 <span class="nc" id="L85">                hours++;</span>
             }
 
             boolean flag;
-<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (dc.DAY_COUNTS.equals(FIRST_HALF)) {</span>
-<span class="nc bnc" id="L90" title="All 4 branches missed.">                flag = hours &gt;= 9 &amp;&amp; hours &lt;= 13;</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">            if (dc.DAY_COUNTS.equals(FIRST_HALF)) {</span>
+<span class="pc bpc" id="L90" title="1 of 4 branches missed.">                flag = hours &gt;= 9 &amp;&amp; hours &lt;= 13;</span>
             } else {
-<span class="nc bnc" id="L92" title="All 4 branches missed.">                flag = hours &gt;= 13 &amp;&amp; hours &lt;= 17;</span>
+<span class="pc bpc" id="L92" title="1 of 4 branches missed.">                flag = hours &gt;= 13 &amp;&amp; hours &lt;= 17;</span>
             }
 
-<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (!flag) {</span>
-<span class="nc" id="L96">                writeOldCardDenialData(dc);</span>
-<span class="nc" id="L97">                return false;</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            if (!flag) {</span>
+<span class="fc" id="L96">                writeOldCardDenialData(dc);</span>
+<span class="fc" id="L97">                return false;</span>
             } else {
-<span class="nc" id="L99">                return true;</span>
+<span class="fc" id="L99">                return true;</span>
             }
         } else {
 <span class="fc" id="L102">            writeOldCardDenialData(dc);</span>

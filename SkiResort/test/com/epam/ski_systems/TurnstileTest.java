@@ -16,7 +16,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
-//import org.mockito.Mockito;
+import org.mockito.Mockito;
 
 /**
  *
@@ -125,74 +125,74 @@ public class TurnstileTest {
         assertEquals(expResult, result);
     }
 
-//    @Test
-//    public void testCheckFirstHalfDayWithNormalTime() {
-//        Calendar regDate = new GregorianCalendar();
-//        DayCounts halfDayCounts = FIRST_HALF;
-//        DaysCard dc = new DaysCard(0, DAY, regDate, false, halfDayCounts);
-//        SkiControlingSystem sks = Mockito.mock(SkiControlingSystem.class);
-//        Calendar date = new GregorianCalendar();
-//        Calendar t = new GregorianCalendar();
-//        date.set(t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DATE), 10, 0, 0);
-//        Mockito.when(sks.getCurrentDateInString()).thenReturn(date.getTime().toString());
-//        Turnstile instance = new Turnstile();
-//        instance.sks = sks;
-//        boolean expResult = true;
-//        boolean result = instance.checkHalfDayCards(dc);
-//        assertEquals(expResult, result);
-//    }
-//
-//    @Test
-//    public void testCheckFirstHalfDayWithBadTime() {
-//        Calendar regDate = new GregorianCalendar();
-//        DayCounts halfDayCounts = FIRST_HALF;
-//        DaysCard dc = new DaysCard(0, DAY, regDate, false, halfDayCounts);
-//        SkiControlingSystem sks = Mockito.mock(SkiControlingSystem.class);
-//        Calendar date = new GregorianCalendar();
-//        Calendar t = new GregorianCalendar();
-//        date.set(t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DATE), 16, 0, 0);
-//        Mockito.when(sks.getCurrentDateInString()).thenReturn(date.getTime().toString());
-//        Turnstile instance = new Turnstile();
-//        instance.sks = sks;
-//        boolean expResult = false;
-//        boolean result = instance.checkHalfDayCards(dc);
-//        assertEquals(expResult, result);
-//    }
-//
-//    @Test
-//    public void testCheckSecondHalfDayWithNormalTime() {
-//        Calendar regDate = new GregorianCalendar();
-//        DayCounts halfDayCounts = SECOND_HALF;
-//        DaysCard dc = new DaysCard(0, DAY, regDate, false, halfDayCounts);
-//        SkiControlingSystem sks = Mockito.mock(SkiControlingSystem.class);
-//        Calendar date = new GregorianCalendar();
-//        Calendar t = new GregorianCalendar();
-//        date.set(t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DATE), 14, 0, 0);
-//        Mockito.when(sks.getCurrentDateInString()).thenReturn(date.getTime().toString());
-//        System.out.println(sks.getCurrentDateInString());
-//        Turnstile instance = new Turnstile();
-//        instance.sks = sks;
-//        boolean expResult = true;
-//        boolean result = instance.checkHalfDayCards(dc);
-//        assertEquals(expResult, result);
-//    }
-//
-//    @Test
-//    public void testCheckSecondHalfDayWithBadTime() {
-//        Calendar regDate = new GregorianCalendar();
-//        DayCounts halfDayCounts = SECOND_HALF;
-//        DaysCard dc = new DaysCard(0, DAY, regDate, false, halfDayCounts);
-//        SkiControlingSystem sks = Mockito.mock(SkiControlingSystem.class);
-//        Calendar date = new GregorianCalendar();
-//        Calendar t = new GregorianCalendar();
-//        date.set(t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DATE), 10, 0, 0);
-//        Mockito.when(sks.getCurrentDateInString()).thenReturn(date.getTime().toString());
-//        Turnstile instance = new Turnstile();
-//        instance.sks = sks;
-//        boolean expResult = false;
-//        boolean result = instance.checkHalfDayCards(dc);
-//        assertEquals(expResult, result);
-//    }
+    @Test
+    public void testCheckFirstHalfDayWithNormalTime() {
+        Calendar regDate = new GregorianCalendar();
+        DayCounts halfDayCounts = FIRST_HALF;
+        DaysCard dc = new DaysCard(0, DAY, regDate, false, halfDayCounts);
+        SkiControlingSystem sks = Mockito.mock(SkiControlingSystem.class);
+        Calendar date = new GregorianCalendar();
+        Calendar t = new GregorianCalendar();
+        date.set(t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DATE), 10, 0, 0);
+        Mockito.when(sks.getCurrentDateInString()).thenReturn(date.getTime().toString());
+        Turnstile instance = new Turnstile();
+        instance.sks = sks;
+        boolean expResult = true;
+        boolean result = instance.checkHalfDayCards(dc);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testCheckFirstHalfDayWithBadTime() {
+        Calendar regDate = new GregorianCalendar();
+        DayCounts halfDayCounts = FIRST_HALF;
+        DaysCard dc = new DaysCard(0, DAY, regDate, false, halfDayCounts);
+        SkiControlingSystem sks = Mockito.mock(SkiControlingSystem.class);
+        Calendar date = new GregorianCalendar();
+        Calendar t = new GregorianCalendar();
+        date.set(t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DATE), 16, 0, 0);
+        Mockito.when(sks.getCurrentDateInString()).thenReturn(date.getTime().toString());
+        Turnstile instance = new Turnstile();
+        instance.sks = sks;
+        boolean expResult = false;
+        boolean result = instance.checkHalfDayCards(dc);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testCheckSecondHalfDayWithNormalTime() {
+        Calendar regDate = new GregorianCalendar();
+        DayCounts halfDayCounts = SECOND_HALF;
+        DaysCard dc = new DaysCard(0, DAY, regDate, false, halfDayCounts);
+        SkiControlingSystem sks = Mockito.mock(SkiControlingSystem.class);
+        Calendar date = new GregorianCalendar();
+        Calendar t = new GregorianCalendar();
+        date.set(t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DATE), 14, 0, 0);
+        Mockito.when(sks.getCurrentDateInString()).thenReturn(date.getTime().toString());
+        System.out.println(sks.getCurrentDateInString());
+        Turnstile instance = new Turnstile();
+        instance.sks = sks;
+        boolean expResult = true;
+        boolean result = instance.checkHalfDayCards(dc);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testCheckSecondHalfDayWithBadTime() {
+        Calendar regDate = new GregorianCalendar();
+        DayCounts halfDayCounts = SECOND_HALF;
+        DaysCard dc = new DaysCard(0, DAY, regDate, false, halfDayCounts);
+        SkiControlingSystem sks = Mockito.mock(SkiControlingSystem.class);
+        Calendar date = new GregorianCalendar();
+        Calendar t = new GregorianCalendar();
+        date.set(t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DATE), 10, 0, 0);
+        Mockito.when(sks.getCurrentDateInString()).thenReturn(date.getTime().toString());
+        Turnstile instance = new Turnstile();
+        instance.sks = sks;
+        boolean expResult = false;
+        boolean result = instance.checkHalfDayCards(dc);
+        assertEquals(expResult, result);
+    }
 
     @Test
     public void testCheckNegativeResponseWithOldFullDayCard() {
