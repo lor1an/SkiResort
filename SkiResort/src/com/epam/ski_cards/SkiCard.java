@@ -1,5 +1,4 @@
 package com.epam.ski_cards;
-
 import com.epam.ski_cards.enums.CardType;
 import java.util.Calendar;
 
@@ -8,7 +7,7 @@ import java.util.Calendar;
  * @author Anatolii_Hlazkov
  */
 public abstract class SkiCard {
-//sdkjfskdf
+
     public final int id;
     private boolean working = true;
     public final Boolean WEEKEND;
