@@ -10,101 +10,105 @@ import com.epam.ski_cards.enums.CardType;
 import com.epam.ski_cards.enums.DayCounts;
 import com.epam.ski_cards.enums.LiftCounts;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
  * @author Anatolii_Hlazkov
  */
-<span class="fc" id="L18">public class SkiControlingSystem {</span>
+<span class="fc" id="L19">public class SkiControlingSystem {</span>
 
     private static SkiControlingSystem instance;
-<span class="fc" id="L21">    public final MyArrayList&lt;String&gt; log = new MyArrayList();</span>
+<span class="fc" id="L22">    public final MyArrayList&lt;String&gt; log = new MyArrayList();</span>
     private static int id;
     public boolean weekend;
 
     public static SkiControlingSystem getInstance() {
-<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (instance == null) {</span>
-<span class="fc" id="L27">            instance = new SkiControlingSystem();</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (instance == null) {</span>
+<span class="fc" id="L28">            instance = new SkiControlingSystem();</span>
         }
-<span class="fc" id="L29">        return instance;</span>
+<span class="fc" id="L30">        return instance;</span>
     }
 
     public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, DayCounts dc) {
-<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if (!ct.equals(CardType.DAY)) {</span>
-<span class="fc" id="L34">            throw new WrongCardTypeException();</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (!ct.equals(CardType.DAY)) {</span>
+<span class="fc" id="L35">            throw new WrongCardTypeException();</span>
         }
-<span class="nc" id="L36">        return new DaysCard(id++, ct, regDate, weekend, dc);</span>
+<span class="nc" id="L37">        return new DaysCard(id++, ct, regDate, weekend, dc);</span>
     }
 
     public SkiCard makeCard(CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) {
-<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if (!ct.equals(CardType.LIFT)) {</span>
-<span class="fc" id="L41">            throw new WrongCardTypeException();</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (!ct.equals(CardType.LIFT)) {</span>
+<span class="fc" id="L42">            throw new WrongCardTypeException();</span>
         }
-<span class="nc" id="L43">        return new LiftsCard(id++, ct, regDate, weekend, lc);</span>
+<span class="nc" id="L44">        return new LiftsCard(id++, ct, regDate, weekend, lc);</span>
     }
 
     public SkiCard makeCard(CardType ct, Calendar regDate, Calendar endOfSeason) {
-<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (!ct.equals(CardType.SEASON)) {</span>
-<span class="fc" id="L48">            throw new WrongCardTypeException();</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if (!ct.equals(CardType.SEASON)) {</span>
+<span class="fc" id="L49">            throw new WrongCardTypeException();</span>
         }
-<span class="nc" id="L50">        return new SeasonCard(id++, ct, regDate, endOfSeason);</span>
+<span class="nc" id="L51">        return new SeasonCard(id++, ct, regDate, endOfSeason);</span>
     }
 
     public void writeData(String message) {
-<span class="fc" id="L54">        log.add(message);</span>
-<span class="fc" id="L55">    }</span>
+<span class="fc" id="L55">        log.add(message);</span>
+<span class="fc" id="L56">    }</span>
 
     public void blockCard(SkiCard sc) {
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if (sc.isWorking()) {</span>
-<span class="fc" id="L59">            sc.setWorking(false);</span>
-<span class="fc" id="L60">            System.out.println(&quot;Card was blocked.&quot;);</span>
-<span class="fc" id="L61">            writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        if (sc.isWorking()) {</span>
+<span class="fc" id="L60">            sc.setWorking(false);</span>
+<span class="fc" id="L61">            System.out.println(&quot;Card was blocked.&quot;);</span>
+<span class="fc" id="L62">            writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
                     + &quot;.\nWas blocked.&quot;);
         } else {
-<span class="nc" id="L64">            System.out.println(&quot;Card already blocking.&quot;);</span>
+<span class="nc" id="L65">            System.out.println(&quot;Card already blocking.&quot;);</span>
 
         }
-<span class="fc" id="L67">    }</span>
+<span class="fc" id="L68">    }</span>
 
     public MyArrayList getLog() {
-<span class="fc" id="L70">        return log;</span>
+<span class="fc" id="L71">        return log;</span>
     }
 
     public void printWholeLog() {
-<span class="fc bfc" id="L74" title="All 2 branches covered.">        for (int i = 0; i &lt; log.size(); i++) {</span>
-<span class="fc" id="L75">            System.out.println(log.get(i));</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        for (int i = 0; i &lt; log.size(); i++) {</span>
+<span class="fc" id="L76">            System.out.println(log.get(i));</span>
         }
-<span class="fc" id="L77">    }</span>
+<span class="fc" id="L78">    }</span>
 
     public MyArrayList getDaysCardLog() {
-<span class="fc" id="L80">        MyArrayList daysCardLogs = new MyArrayList();</span>
-<span class="fc bfc" id="L81" title="All 2 branches covered.">        for (int i = 0; i &lt; log.size(); i++) {</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">            if (log.get(i).startsWith(&quot;DAY&quot;)) {</span>
-<span class="fc" id="L83">                daysCardLogs.add(log.get(i));</span>
+<span class="fc" id="L81">        MyArrayList daysCardLogs = new MyArrayList();</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        for (int i = 0; i &lt; log.size(); i++) {</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">            if (log.get(i).startsWith(&quot;DAY&quot;)) {</span>
+<span class="fc" id="L84">                daysCardLogs.add(log.get(i));</span>
             }
         }
-<span class="fc" id="L86">        return daysCardLogs;</span>
+<span class="fc" id="L87">        return daysCardLogs;</span>
     }
 
     public MyArrayList getLiftsCardLog() {
-<span class="fc" id="L90">        MyArrayList liftsCardLogs = new MyArrayList();</span>
-<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (int i = 0; i &lt; log.size(); i++) {</span>
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            if (log.get(i).startsWith(&quot;LIFT&quot;)) {</span>
-<span class="fc" id="L93">                liftsCardLogs.add(log.get(i));</span>
+<span class="fc" id="L91">        MyArrayList liftsCardLogs = new MyArrayList();</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        for (int i = 0; i &lt; log.size(); i++) {</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            if (log.get(i).startsWith(&quot;LIFT&quot;)) {</span>
+<span class="fc" id="L94">                liftsCardLogs.add(log.get(i));</span>
             }
         }
-<span class="fc" id="L96">        return liftsCardLogs;</span>
+<span class="fc" id="L97">        return liftsCardLogs;</span>
     }
 
     public MyArrayList getSeasonCardLog() {
-<span class="fc" id="L100">        MyArrayList seasonCardLogs = new MyArrayList();</span>
-<span class="fc bfc" id="L101" title="All 2 branches covered.">        for (int i = 0; i &lt; log.size(); i++) {</span>
-<span class="fc bfc" id="L102" title="All 2 branches covered.">            if (log.get(i).startsWith(&quot;SEASON&quot;)) {</span>
-<span class="fc" id="L103">                seasonCardLogs.add(log.get(i));</span>
+<span class="fc" id="L101">        MyArrayList seasonCardLogs = new MyArrayList();</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for (int i = 0; i &lt; log.size(); i++) {</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">            if (log.get(i).startsWith(&quot;SEASON&quot;)) {</span>
+<span class="fc" id="L104">                seasonCardLogs.add(log.get(i));</span>
             }
         }
-<span class="fc" id="L106">        return seasonCardLogs;</span>
+<span class="fc" id="L107">        return seasonCardLogs;</span>
     }
 
+    String getCurrentDateInString() {
+<span class="fc" id="L111">        return new GregorianCalendar().getTime().toString();</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.4.201312101107</span></div></body></html>

@@ -10,11 +10,11 @@ import java.util.Calendar;
  */
 public class DaysCard extends SkiCard {
 
-    public final DayCounts DC;
+    public final DayCounts DAY_COUNTS;
 
     public DaysCard(int id, CardType ct, Calendar regDate, Boolean weekend, DayCounts dc) {
         super(id, ct, regDate, weekend);
-        DC = dc;
+        DAY_COUNTS = dc;
     }
 
 }

@@ -11,11 +11,11 @@ import java.util.Calendar;
 public class LiftsCard extends SkiCard {
 
     private int trips;
-    public final LiftCounts lc;
+    public final LiftCounts LIFT_COUNTS;
 
     public LiftsCard(int id, CardType ct, Calendar regDate, Boolean weekend, LiftCounts lc) {
 <span class="fc" id="L17">        super(id, ct, regDate, weekend);</span>
-<span class="fc" id="L18">        this.lc = lc;</span>
+<span class="fc" id="L18">        this.LIFT_COUNTS = lc;</span>
 <span class="fc" id="L19">    }</span>
 
     public int getTrips() {
@@ -23,7 +23,7 @@ public class LiftsCard extends SkiCard {
     }
 
     public LiftCounts getLc() {
-<span class="nc" id="L26">        return lc;</span>
+<span class="nc" id="L26">        return LIFT_COUNTS;</span>
     }
 
     public void setTrips(int trips) {

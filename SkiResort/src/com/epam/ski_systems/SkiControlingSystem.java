@@ -10,6 +10,7 @@ import com.epam.ski_cards.enums.CardType;
 import com.epam.ski_cards.enums.DayCounts;
 import com.epam.ski_cards.enums.LiftCounts;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -62,6 +63,7 @@ public class SkiControlingSystem {
                     + ".\nWas blocked.");
         } else {
             System.out.println("Card already blocking.");
+
         }
     }
 
@@ -105,4 +107,7 @@ public class SkiControlingSystem {
         return seasonCardLogs;
     }
 
+    String getCurrentDateInString() {
+        return new GregorianCalendar().getTime().toString();
+    }
 }

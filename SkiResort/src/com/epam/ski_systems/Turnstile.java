@@ -16,6 +16,7 @@ import java.util.GregorianCalendar;
 public class Turnstile {
 
     SkiControlingSystem sks = SkiControlingSystem.getInstance();
+    String info = "new";
 
     public boolean passingTurnstile(SkiCard sc) {
         if (!sc.CARD_TYPE.equals(SEASON)) {
@@ -61,7 +62,7 @@ public class Turnstile {
     }
 
     private boolean check(DaysCard dc) {
-        switch (dc.DC) {
+        switch (dc.DAY_COUNTS) {
             case FIRST_HALF:
             case SECOND_HALF:
                 return checkHalfDayCards(dc);
@@ -70,25 +71,27 @@ public class Turnstile {
         }
     }
 
-    private boolean checkHalfDayCards(DaysCard dc) {
-        String currentDateInString = new GregorianCalendar().getTime().toString();
+    boolean checkHalfDayCards(DaysCard dc) {
+        String currentDate = sks.getCurrentDateInString();
         String regDateInString = dc.REG_DATE.getTime().toString();
-        if (regDateInString.startsWith(currentDateInString.substring(0, 10))
-                && regDateInString.endsWith(currentDateInString.substring(24))) {
-            String time = currentDateInString.substring(11, 19);
+        if (regDateInString.startsWith(currentDate.substring(0, 10))
+                && regDateInString.endsWith(currentDate.substring(24))) {
+            String time = currentDate.substring(11, 19);
             Integer hours = new Integer(time.substring(0, 2));
+            info += hours;
             Integer minutes = new Integer(time.substring(3, 5));
+            info += " " + minutes;
             if (minutes > 0) {
                 hours++;
             }
-            //Определение условия по которому нужно проверять карточку
+
             boolean flag;
-            if (dc.DC.equals(FIRST_HALF)) {
+            if (dc.DAY_COUNTS.equals(FIRST_HALF)) {
                 flag = hours >= 9 && hours <= 13;
             } else {
                 flag = hours >= 13 && hours <= 17;
             }
-            //Запись в ArrayList
+
             if (!flag) {
                 writeOldCardDenialData(dc);
                 return false;
@@ -103,7 +106,7 @@ public class Turnstile {
 
     private boolean checkFullDayCards(DaysCard dc) {
         Calendar endCardDate = (Calendar) dc.REG_DATE.clone();
-        endCardDate.add(Calendar.DAY_OF_WEEK, dc.DC.getDays());
+        endCardDate.add(Calendar.DAY_OF_WEEK, dc.DAY_COUNTS.getDays());
         if (endCardDate.compareTo(new GregorianCalendar()) >= 0) {
             return true;
         } else {
@@ -119,7 +122,7 @@ public class Turnstile {
     }
 
     private boolean check(LiftsCard lc) {
-        if (lc.lc.getCounts() <= lc.getTrips()) {
+        if (lc.LIFT_COUNTS.getCounts() <= lc.getTrips()) {
             System.out.println("You shall not pass.");
             sks.writeData(lc.CARD_TYPE.toString() + " card, id = " + lc.id
                     + ".\nCard has not pass. Reason: over trips.");

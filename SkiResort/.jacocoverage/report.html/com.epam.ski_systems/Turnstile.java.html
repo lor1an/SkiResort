@@ -16,126 +16,129 @@ import java.util.GregorianCalendar;
 <span class="fc" id="L16">public class Turnstile {</span>
 
 <span class="fc" id="L18">    SkiControlingSystem sks = SkiControlingSystem.getInstance();</span>
+<span class="fc" id="L19">    String info = &quot;new&quot;;</span>
 
     public boolean passingTurnstile(SkiCard sc) {
-<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (!sc.CARD_TYPE.equals(SEASON)) {</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">            if (sc.WEEKEND != sks.weekend) {</span>
-<span class="fc bfc" id="L23" title="All 2 branches covered.">                String str = sks.weekend ? &quot;weekend&quot; : &quot;workaday&quot;;</span>
-<span class="fc" id="L24">                System.out.println(&quot;You shall not pass.&quot;);</span>
-<span class="fc" id="L25">                sks.writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (!sc.CARD_TYPE.equals(SEASON)) {</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            if (sc.WEEKEND != sks.weekend) {</span>
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">                String str = sks.weekend ? &quot;weekend&quot; : &quot;workaday&quot;;</span>
+<span class="fc" id="L25">                System.out.println(&quot;You shall not pass.&quot;);</span>
+<span class="fc" id="L26">                sks.writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
                         + &quot;.\nCard has not pass. Reason: it is not &quot; + str + &quot;.&quot;);
-<span class="fc" id="L27">                return false;</span>
+<span class="fc" id="L28">                return false;</span>
             }
         }
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (check(sc)) {</span>
-<span class="fc" id="L31">            System.out.println(&quot;You may pass.&quot;);</span>
-<span class="fc" id="L32">            sks.writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (check(sc)) {</span>
+<span class="fc" id="L32">            System.out.println(&quot;You may pass.&quot;);</span>
+<span class="fc" id="L33">            sks.writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
                     + &quot;.\nCard has pass.&quot;);
-<span class="fc" id="L34">            return true;</span>
+<span class="fc" id="L35">            return true;</span>
         } else {
-<span class="fc" id="L36">            return false;</span>
+<span class="fc" id="L37">            return false;</span>
         }
     }
 
     boolean check(SkiCard sc) {
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (!sc.isWorking()) {</span>
-<span class="fc" id="L42">            System.out.println(&quot;Your card was blocked.&quot;);</span>
-<span class="fc" id="L43">            sks.writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (!sc.isWorking()) {</span>
+<span class="fc" id="L43">            System.out.println(&quot;Your card was blocked.&quot;);</span>
+<span class="fc" id="L44">            sks.writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
                     + &quot;.\nCard has not pass. Reason: blocked.&quot;);
-<span class="fc" id="L45">            return false;</span>
+<span class="fc" id="L46">            return false;</span>
         } else {
-<span class="pc bpc" id="L47" title="1 of 4 branches missed.">            switch (sc.CARD_TYPE) {</span>
+<span class="pc bpc" id="L48" title="1 of 4 branches missed.">            switch (sc.CARD_TYPE) {</span>
                 case DAY:
-<span class="fc" id="L49">                    DaysCard dc = (DaysCard) sc;</span>
-<span class="fc" id="L50">                    return check(dc);</span>
+<span class="fc" id="L50">                    DaysCard dc = (DaysCard) sc;</span>
+<span class="fc" id="L51">                    return check(dc);</span>
                 case LIFT:
-<span class="fc" id="L52">                    LiftsCard lc = (LiftsCard) sc;</span>
-<span class="fc" id="L53">                    return check(lc);</span>
+<span class="fc" id="L53">                    LiftsCard lc = (LiftsCard) sc;</span>
+<span class="fc" id="L54">                    return check(lc);</span>
                 case SEASON:
-<span class="fc" id="L55">                    SeasonCard sec = (SeasonCard) sc;</span>
-<span class="fc" id="L56">                    return check(sec);</span>
+<span class="fc" id="L56">                    SeasonCard sec = (SeasonCard) sc;</span>
+<span class="fc" id="L57">                    return check(sec);</span>
                 default:
-<span class="nc" id="L58">                    return false;</span>
+<span class="nc" id="L59">                    return false;</span>
             }
         }
     }
 
     private boolean check(DaysCard dc) {
-<span class="pc bfc" id="L64" title="All 2 branches covered.">        switch (dc.DC) {</span>
+<span class="pc bfc" id="L65" title="All 2 branches covered.">        switch (dc.DAY_COUNTS) {</span>
             case FIRST_HALF:
             case SECOND_HALF:
-<span class="fc" id="L67">                return checkHalfDayCards(dc);</span>
+<span class="fc" id="L68">                return checkHalfDayCards(dc);</span>
             default:
-<span class="fc" id="L69">                return checkFullDayCards(dc);</span>
+<span class="fc" id="L70">                return checkFullDayCards(dc);</span>
         }
     }
 
-    private boolean checkHalfDayCards(DaysCard dc) {
-<span class="fc" id="L74">        String currentDateInString = new GregorianCalendar().getTime().toString();</span>
-<span class="fc" id="L75">        String regDateInString = dc.REG_DATE.getTime().toString();</span>
-<span class="pc bpc" id="L76" title="3 of 4 branches missed.">        if (regDateInString.startsWith(currentDateInString.substring(0, 10))</span>
-                &amp;&amp; regDateInString.endsWith(currentDateInString.substring(24))) {
-<span class="nc" id="L78">            String time = currentDateInString.substring(11, 19);</span>
-<span class="nc" id="L79">            Integer hours = new Integer(time.substring(0, 2));</span>
-<span class="nc" id="L80">            Integer minutes = new Integer(time.substring(3, 5));</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (minutes &gt; 0) {</span>
-<span class="nc" id="L82">                hours++;</span>
+    boolean checkHalfDayCards(DaysCard dc) {
+<span class="fc" id="L75">        String currentDate = sks.getCurrentDateInString();</span>
+<span class="fc" id="L76">        String regDateInString = dc.REG_DATE.getTime().toString();</span>
+<span class="pc bpc" id="L77" title="3 of 4 branches missed.">        if (regDateInString.startsWith(currentDate.substring(0, 10))</span>
+                &amp;&amp; regDateInString.endsWith(currentDate.substring(24))) {
+<span class="nc" id="L79">            String time = currentDate.substring(11, 19);</span>
+<span class="nc" id="L80">            Integer hours = new Integer(time.substring(0, 2));</span>
+<span class="nc" id="L81">            info += hours;</span>
+<span class="nc" id="L82">            Integer minutes = new Integer(time.substring(3, 5));</span>
+<span class="nc" id="L83">            info += &quot; &quot; + minutes;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (minutes &gt; 0) {</span>
+<span class="nc" id="L85">                hours++;</span>
             }
-            //Определение условия по которому нужно проверять карточку
+
             boolean flag;
-<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (dc.DC.equals(FIRST_HALF)) {</span>
-<span class="nc bnc" id="L87" title="All 4 branches missed.">                flag = hours &gt;= 9 &amp;&amp; hours &lt;= 13;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (dc.DAY_COUNTS.equals(FIRST_HALF)) {</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">                flag = hours &gt;= 9 &amp;&amp; hours &lt;= 13;</span>
             } else {
-<span class="nc bnc" id="L89" title="All 4 branches missed.">                flag = hours &gt;= 13 &amp;&amp; hours &lt;= 17;</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">                flag = hours &gt;= 13 &amp;&amp; hours &lt;= 17;</span>
             }
-            //Запись в ArrayList
-<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (!flag) {</span>
-<span class="nc" id="L93">                writeOldCardDenialData(dc);</span>
-<span class="nc" id="L94">                return false;</span>
+
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (!flag) {</span>
+<span class="nc" id="L96">                writeOldCardDenialData(dc);</span>
+<span class="nc" id="L97">                return false;</span>
             } else {
-<span class="nc" id="L96">                return true;</span>
+<span class="nc" id="L99">                return true;</span>
             }
         } else {
-<span class="fc" id="L99">            writeOldCardDenialData(dc);</span>
-<span class="fc" id="L100">            return false;</span>
+<span class="fc" id="L102">            writeOldCardDenialData(dc);</span>
+<span class="fc" id="L103">            return false;</span>
         }
     }
 
     private boolean checkFullDayCards(DaysCard dc) {
-<span class="fc" id="L105">        Calendar endCardDate = (Calendar) dc.REG_DATE.clone();</span>
-<span class="fc" id="L106">        endCardDate.add(Calendar.DAY_OF_WEEK, dc.DC.getDays());</span>
-<span class="fc bfc" id="L107" title="All 2 branches covered.">        if (endCardDate.compareTo(new GregorianCalendar()) &gt;= 0) {</span>
-<span class="fc" id="L108">            return true;</span>
+<span class="fc" id="L108">        Calendar endCardDate = (Calendar) dc.REG_DATE.clone();</span>
+<span class="fc" id="L109">        endCardDate.add(Calendar.DAY_OF_WEEK, dc.DAY_COUNTS.getDays());</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (endCardDate.compareTo(new GregorianCalendar()) &gt;= 0) {</span>
+<span class="fc" id="L111">            return true;</span>
         } else {
-<span class="fc" id="L110">            writeOldCardDenialData(dc);</span>
-<span class="fc" id="L111">            return false;</span>
+<span class="fc" id="L113">            writeOldCardDenialData(dc);</span>
+<span class="fc" id="L114">            return false;</span>
         }
     }
 
     private void writeOldCardDenialData(SkiCard sc) {
-<span class="fc" id="L116">        System.out.println(&quot;Old Card.&quot;);</span>
-<span class="fc" id="L117">        sks.writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
+<span class="fc" id="L119">        System.out.println(&quot;Old Card.&quot;);</span>
+<span class="fc" id="L120">        sks.writeData(sc.CARD_TYPE.toString() + &quot; card, id = &quot; + sc.id</span>
                 + &quot;.\nCard has not pass. Reason: Old card.&quot;);
-<span class="fc" id="L119">    }</span>
+<span class="fc" id="L122">    }</span>
 
     private boolean check(LiftsCard lc) {
-<span class="fc bfc" id="L122" title="All 2 branches covered.">        if (lc.lc.getCounts() &lt;= lc.getTrips()) {</span>
-<span class="fc" id="L123">            System.out.println(&quot;You shall not pass.&quot;);</span>
-<span class="fc" id="L124">            sks.writeData(lc.CARD_TYPE.toString() + &quot; card, id = &quot; + lc.id</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        if (lc.LIFT_COUNTS.getCounts() &lt;= lc.getTrips()) {</span>
+<span class="fc" id="L126">            System.out.println(&quot;You shall not pass.&quot;);</span>
+<span class="fc" id="L127">            sks.writeData(lc.CARD_TYPE.toString() + &quot; card, id = &quot; + lc.id</span>
                     + &quot;.\nCard has not pass. Reason: over trips.&quot;);
-<span class="fc" id="L126">            return false;</span>
+<span class="fc" id="L129">            return false;</span>
         } else {
-<span class="fc" id="L128">            lc.setTrips(lc.getTrips() + 1);</span>
-<span class="fc" id="L129">            return true;</span>
+<span class="fc" id="L131">            lc.setTrips(lc.getTrips() + 1);</span>
+<span class="fc" id="L132">            return true;</span>
         }
     }
 
     private boolean check(SeasonCard sc) {
-<span class="fc bfc" id="L134" title="All 2 branches covered.">        if (sc.END_OF_THE_SEASON.compareTo(new GregorianCalendar()) &gt;= 0) {</span>
-<span class="fc" id="L135">            return true;</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        if (sc.END_OF_THE_SEASON.compareTo(new GregorianCalendar()) &gt;= 0) {</span>
+<span class="fc" id="L138">            return true;</span>
         } else {
-<span class="fc" id="L137">            writeOldCardDenialData(sc);</span>
-<span class="fc" id="L138">            return false;</span>
+<span class="fc" id="L140">            writeOldCardDenialData(sc);</span>
+<span class="fc" id="L141">            return false;</span>
         }
     }
 }
