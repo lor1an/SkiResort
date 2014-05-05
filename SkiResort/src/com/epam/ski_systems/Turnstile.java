@@ -15,9 +15,11 @@ import java.util.GregorianCalendar;
  */
 public class Turnstile {
 
-    SkiControlingSystem sks = SkiControlingSystem.getInstance();
-    String info = "new";
+    SkiControlingSystem sks;
 
+    public Turnstile(SkiControlingSystem sks) {
+        this.sks = sks;
+    }
     public boolean passingTurnstile(SkiCard sc) {
         if (!sc.CARD_TYPE.equals(SEASON)) {
             if (sc.WEEKEND != sks.weekend) {
@@ -78,13 +80,10 @@ public class Turnstile {
                 && regDateInString.endsWith(currentDate.substring(24))) {
             String time = currentDate.substring(11, 19);
             Integer hours = new Integer(time.substring(0, 2));
-            info += hours;
             Integer minutes = new Integer(time.substring(3, 5));
-            info += " " + minutes;
             if (minutes > 0) {
                 hours++;
             }
-
             boolean flag;
             if (dc.DAY_COUNTS.equals(FIRST_HALF)) {
                 flag = hours >= 9 && hours <= 13;
